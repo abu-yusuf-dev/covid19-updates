@@ -25,6 +25,7 @@
             <v-card-text>
               <v-form>
                 <v-text-field
+                  v-model="username"
                   label="Username"
                   name="username"
                   prepend-icon="emoji_people"
@@ -32,6 +33,7 @@
                 />
 
                 <v-text-field
+                  v-model="name"
                   label="Name"
                   name="name"
                   prepend-icon="person"
@@ -39,6 +41,7 @@
                 />
 
                 <v-text-field
+                  v-model="email"
                   label="Email"
                   name="email"
                   prepend-icon="email"
@@ -47,6 +50,7 @@
 
                 <v-text-field
                   id="password"
+                  v-model="password"
                   label="Password"
                   name="password"
                   prepend-icon="lock"
@@ -56,7 +60,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer />
-              <v-btn color="primary">Sign-up</v-btn>
+              <v-btn color="primary" @click="signUp">Sign-up</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -70,6 +74,27 @@ export default {
   layout: 'default',
   props: {
     // source: String
+  },
+  data () {
+    return {
+      username: null,
+      name: null,
+      email: null,
+      password: null
+    }
+  },
+  methods: {
+    signUp () {
+      const payload = {
+        username: this.username,
+        first_name: this.name,
+        email: this.email,
+        password: this.password
+      }
+      const response = this.$axios.post('/register/', payload)
+      console.log('response: ', response)
+      const auth = response.data
+    }
   }
 }
 </script>
