@@ -71,6 +71,7 @@
 
 <script>
 export default {
+  middleware: 'authenticated',
   layout: 'default',
   props: {
     // source: String
@@ -84,16 +85,19 @@ export default {
     }
   },
   methods: {
-    signUp () {
+    async signUp () {
       const payload = {
         username: this.username,
         first_name: this.name,
         email: this.email,
         password: this.password
       }
-      const response = this.$axios.post('/register/', payload)
-      console.log('response: ', response)
-      const auth = response.data
+      const response = await this.$axios.post('/register/', payload)
+      if (response && response.status === 201) {
+        this.$router.push({
+          path: '/login'
+        })
+      }
     }
   }
 }

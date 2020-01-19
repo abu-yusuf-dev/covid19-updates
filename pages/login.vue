@@ -55,6 +55,7 @@
 
 <script>
 export default {
+  // middleware: 'authenticated',
   layout: 'default',
   props: {
     // source: String
@@ -65,17 +66,28 @@ export default {
       password: null
     }
   },
+  mounted() {
+    let auth = localStorage.getItem('auth')
+    if (auth && auth != 'undefined') {
+      this.$router.push({
+        path: '/'
+      })
+    }
+  },
   methods: {
-    login () {
+    async login () {
       const payload = {
         username: this.username,
         password: this.password
       }
-      const response = this.$axios.post('/login/', payload)
-      console.log('response: ', response)
-      const auth = response.data
-      this.$store.commit('setAuth', auth) // mutating to store for client rendering
-      localStorage.setItem('auth', JSON.stringify(auth)) // set auth in localstorage
+      let res = await this.$axios.post('/login/', payload)
+      if (res && res.status === 200) {
+        console.log('response: ', res)
+        const auth = res.data
+        this.$store.commit('setAuth', auth) // mutating to store for client rendering
+        localStorage.setItem('auth', JSON.stringify(auth)) // set auth in localstorage
+        window.location.reload(true)
+      }
     }
   }
 }
