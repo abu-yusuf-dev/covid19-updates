@@ -76,7 +76,6 @@ export default {
       })
     },
     backToHome () {
-      console.log(this.$route.path)
       if (this.$route.path != '/') {
         this.$router.push('/')
       }
