@@ -51,10 +51,15 @@ export default {
   },
   methods: {
     async getRooms () {
-      const response = await this.$axios.get('/rooms/')
-      if (response) {
-        this.items = response.data.results
+      try {
+        const response = await this.$axios.get('/rooms/')
+        if (response) {
+          this.items = response.data.results
+        }
+      } catch (error) {
+        console.log('error: ', error.response)
       }
+      
     }
   }
 }
