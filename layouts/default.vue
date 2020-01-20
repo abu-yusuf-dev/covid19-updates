@@ -3,13 +3,12 @@
     id="inspire"
     dark
   >
-  <v-toolbar :clipped-left="$vuetify.breakpoint.lgAndUp"
-      color="primary" gray app fixed align-center justify-end row>
-      <div style="width: 150px" class="ml-0">
-      </div>
+    <v-toolbar :clipped-left="$vuetify.breakpoint.lgAndUp"
+               color="primary" gray app fixed align-center justify-end row>
+      <div style="width: 150px" class="ml-0"/>
       <p class="title hidden-sm-and-down mb-0 theme-text-light" @click="backToHome">HMS Project</p>
        
-      <v-spacer></v-spacer>
+      <v-spacer/>
       <v-btn v-if="user" color="primary">
         Welcome {{ user.user.username }}
       </v-btn>
