@@ -7,22 +7,19 @@
       xs12
       sm8
       md6>
-      <div class="text-xs-center">
-        <logo/>
-        <vuetify-logo/>
+      <div class="text-xs-left">
+        <Rooms/>
       </div>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import Rooms from '~/components/Rooms.vue'
 
 export default {
   components: {
-    Logo,
-    VuetifyLogo
+    Rooms
   }
 }
 </script>
