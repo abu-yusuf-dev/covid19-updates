@@ -4,7 +4,7 @@
     flat
     tile
   > 
-    <v-card class="ma-2" v-for="item in items" :key="item.id">
+    <v-card class="ma-2">
       <v-img
         class="white--text align-end"
         height="200px"
@@ -25,16 +25,16 @@
         <v-btn
           color="orange"
           text
-          @click="roomDetailspage(item.id)"
+          @click="roomBooking(item.id)"
         >
-          Details
+          Book Now
         </v-btn>
 
         <v-btn
           color="orange"
           text
         >
-          Share
+          Next
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -44,29 +44,32 @@
 <script>
 
 export default {
+  middleware: 'authenticated',
   components: {
   },
   data () {
     return {
-      items: []
+      item: [],
+      roomId: ''
     }
   },
   async mounted() {
-    await this.getRooms()
+    this.roomId = this.$route.params.id
+    await this.getRoomDetails()
   },
   methods: {
-    async getRooms () {
+    async getRoomDetails () {
       try {
-        const response = await this.$axios.get('/rooms/')
+        const response = await this.$axios.get('/room/' + this.roomId)
         if (response) {
-          this.items = response.data.results
+          this.item = response.data
         }
       } catch (error) {
         console.log('error: ', error.response)
       }
     },
-    roomDetailspage (id) {
-      this.$router.push('room/' + id)
+    roomBooking (id) {
+      this.$router.push('/room/book/' + id)
     }
   }
 }
