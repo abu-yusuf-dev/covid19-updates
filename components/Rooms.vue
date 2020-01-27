@@ -1,44 +1,43 @@
 <template>
-  <v-card
-    class="d-flex flex-wrap mb-6"
-    flat
-    tile
-  > 
-    <v-card class="ma-2" v-for="item in items" :key="item.id">
-      <v-img
-        class="white--text align-end"
-        height="200px"
-        :src="item.image"
-      >
-        <v-card-title>{{ item.name }}</v-card-title>
-      </v-img>
-
-      <v-card-subtitle class="pb-0">Room cost(per-night): {{ item.price }}</v-card-subtitle>
-
-      <v-card-text class="text--primary">
-        <div>Room Size: {{ item.size }}</div>
-
-        <div>{{ item.details }}</div>
-      </v-card-text>
-
-      <v-card-actions>
-        <v-btn
-          color="orange"
-          text
-          @click="roomDetailspage(item.id)"
+ 
+  <v-layout row wrap>
+    <v-flex sm4 v-for="item in items" :key="item.id">
+      <v-card class="ma-2">
+        <v-img
+          class="white--text align-end"
+          height="200px"
+          :src="item.image"
         >
-          Details
-        </v-btn>
+          <v-card-title class="pa-1"><p class="imageText">{{ item.name }}</p></v-card-title>
+        </v-img>
 
-        <v-btn
-          color="orange"
-          text
-        >
-          Share
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-card>
+
+        <v-card-text class="text--primary">
+          <div>Room cost(per-night): {{ item.price }}</div>
+          <div>Room Size: {{ item.size }}</div>
+
+          <div>{{ item.details }}</div>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn
+            color="orange"
+            text
+            @click="roomDetailspage(item.id)"
+          >
+            Details
+          </v-btn>
+
+          <v-btn
+            color="orange"
+            text
+          >
+            Share
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -73,5 +72,10 @@ export default {
 </script>
 
 <style scoped>
-
+.imageText {
+  /* background: rgba(0, 0, 0, 0.507); */
+  background: rgba(0, 0, 0, 0.562);
+  color: rgb(133, 204, 86);
+  font-size: 20px;
+}
 </style>

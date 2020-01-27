@@ -104,14 +104,29 @@
       } else {
         this.name && this.email === ''
       }
-      console.log('this.auth: ', this.auth)
       this.roomId = this.$route.params.id
       await this.getRoomDetails()
     },
     methods: {
       validate () {
         if (this.$refs.form.validate()) {
-          this.snackbar = true
+          try {
+            let payload = {
+              'user_name': this.auth.user.username,
+              'user_email': this.email,
+              'room_name': this.item.name,
+              'room_id': this.item.id,
+              'phone_number': this.phone_number,
+              'address': this.address
+            }
+            const response = this.$axios.post('/room/book/', payload)
+            if (response) {
+              console.log('response: ', response)
+              // this.items = response.data.results
+            }
+            } catch (error) {
+              console.log('error: ', error.response)
+            }
         }
       },
       reset () {
