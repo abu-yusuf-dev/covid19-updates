@@ -2,15 +2,15 @@
   <v-card class="ma-2">
     <v-img
       class="white--text align-end"
-      height="200px"
+      height="300px"
       :src="item.image"
     >
-      <v-card-title>{{ item.name }}</v-card-title>
+      <v-card-title class="pa-1"><p class="imageText">{{ item.name }}</p></v-card-title>
     </v-img>
 
-    <v-card-subtitle class="pb-0">Room cost(per-night): {{ item.price }}</v-card-subtitle>
 
     <v-card-text class="text--primary">
+      <div class="pb-0">Room cost(per-night): {{ item.price }}</div>
       <div>Room Size: {{ item.size }}</div>
 
       <div>{{ item.details }}</div>
@@ -63,6 +63,32 @@
       </v-btn>
 
     </v-form>
+
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Congrats!</v-card-title>
+
+        <v-card-text>
+          Your booking is confirmed!
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer />
+
+          <v-btn
+            color="red"
+            text
+            @click="dialog = false"
+          >
+            Close
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
   </v-card>
 </template>
 
@@ -70,6 +96,7 @@
   export default {
     middleware: 'authenticated',
     data: () => ({
+      dialog: false,
       valid: true,
       name: '',
       nameRules: [
@@ -108,7 +135,7 @@
       await this.getRoomDetails()
     },
     methods: {
-      validate () {
+      async validate () {
         if (this.$refs.form.validate()) {
           try {
             let payload = {
@@ -119,10 +146,13 @@
               'phone_number': this.phone_number,
               'address': this.address
             }
-            const response = this.$axios.post('/room/book/', payload)
-            if (response) {
-              console.log('response: ', response)
-              // this.items = response.data.results
+            const response = await this.$axios.post('/room/book/', payload)
+            if (response && response.status === 201) {
+              this.name = ''
+              this.email = ''
+              this.phone_number = ''
+              this.address = ''
+              this.dialog = true
             }
             } catch (error) {
               console.log('error: ', error.response)
@@ -150,5 +180,9 @@
 </script>
 
 <style scoped>
-
+.imageText {
+  background: rgba(0, 0, 0, 0.562);
+  color: rgb(133, 204, 86);
+  font-size: 20px;
+}
 </style>

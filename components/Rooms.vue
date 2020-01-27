@@ -73,7 +73,6 @@ export default {
 
 <style scoped>
 .imageText {
-  /* background: rgba(0, 0, 0, 0.507); */
   background: rgba(0, 0, 0, 0.562);
   color: rgb(133, 204, 86);
   font-size: 20px;
