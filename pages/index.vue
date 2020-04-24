@@ -70,7 +70,7 @@
 
         <template slot="items" slot-scope="props">
           <td class="click-able">
-            {{ props.item.country }} <br>
+            {{ props.item.country ? props.item.country: 'All' }} <br>
             <img v-if="props.item.countryInfo" height="20" width="40" :src="props.item.countryInfo.flag">
           </td>
           <td class="click-able">{{ props.item.cases }}</td>
