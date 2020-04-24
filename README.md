@@ -1,4 +1,4 @@
-# hms_frontend
+# Covid19-Updates
 
 > My fabulous Nuxt.js project
 
