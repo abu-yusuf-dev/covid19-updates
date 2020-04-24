@@ -3,7 +3,7 @@ const pkg = require('./package')
 module.exports = {
   mode: 'spa',
   axios: {
-    baseURL: 'http://localhost:8000/',
+    baseURL: 'https://corona.lmao.ninja/v2',
     proxyHeaders: false,
     proxy: false,
     debug: true,
@@ -43,8 +43,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify',
-    '~/plugins/token'
+    '@/plugins/vuetify'
   ],
 
   /*

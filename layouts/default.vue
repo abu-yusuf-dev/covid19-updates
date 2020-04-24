@@ -6,19 +6,9 @@
     <v-toolbar :clipped-left="$vuetify.breakpoint.lgAndUp"
                color="primary" gray app fixed align-center justify-end row>
       <div style="width: 150px" class="ml-0"/>
-      <p class="title hidden-sm-and-down mb-0 theme-text-light" @click="backToHome">HMS Project</p>
+      <p class="title hidden-sm-and-down mb-0 theme-text-light">COVID-19 UPDATES</p>
        
       <v-spacer/>
-      <v-btn v-if="user" color="primary">
-        Welcome {{ user.user.username }}
-      </v-btn>
-      <v-btn v-else icon to="/login" color="primary">
-        Login
-      </v-btn>
-      <v-btn icon @click="logout" color="primary">
-        <v-icon @click="logout">power_settings_new</v-icon> 
-      </v-btn>
-
     </v-toolbar>
     <v-content>
       <v-container>
@@ -29,7 +19,7 @@
       :fixed="fixed"
       app
     >
-      <span>&copy;hms-2020</span>
+      <span>&copy;cov19-2020</span>
     </v-footer>
   </v-app>
 </template>
@@ -54,31 +44,10 @@ export default {
     }
   },
   mounted() {
-    this.getUserAuth()
+
   },
   methods: {
-    getUserAuth () {
-      if (this.$store.state.auth) {
-        this.user = this.$store.state.auth
-      } else {
-        let auth = localStorage.getItem('auth')
-        if (auth && auth != 'undefined') {
-          this.user = JSON.parse(auth)
-        }
-      }
-    },
-    logout () {
-      this.user = null
-      localStorage.removeItem('auth')
-      this.$router.push({
-        path: '/login'
-      })
-    },
-    backToHome () {
-      if (this.$route.path != '/') {
-        this.$router.push('/')
-      }
-    }
+
   }
 }
 </script>

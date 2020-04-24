@@ -1,7 +1,7 @@
 {
-  "name": "hms_frontend",
+  "name": "covid19_updates",
   "version": "1.0.0",
-  "description": "My fabulous Nuxt.js project",
+  "description": "All the updates and reports of Covid-19",
   "author": "Abu Yusuf",
   "private": true,
   "scripts": {
