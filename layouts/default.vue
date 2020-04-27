@@ -5,8 +5,7 @@
   >
     <v-toolbar :clipped-left="$vuetify.breakpoint.lgAndUp"
                color="primary" gray app fixed align-center justify-end row>
-      <div style="width: 150px" class="ml-0"/>
-      <p class="title hidden-sm-and-down mb-0 theme-text-light">COVID-19 UPDATES</p>
+      <p style="font-size:30px;margin-top:10px;margin-left: 40px;font-family:lato">COVID-19 UPDATES</p>
        
       <v-spacer/>
     </v-toolbar>
@@ -18,8 +17,12 @@
     <v-footer
       :fixed="fixed"
       app
+      height="60px"
+      style="font-family:lato"
     >
-      <span>&copy;cov19-2020</span>
+      <span style="margin-left: 50px;">&copy;cov19-2020</span>
+      <span style="margin-left: 50px;">Developed by: <a style="text-decoration: underline; color: white;" href="https://github.com/Revel109">Abu Yusuf</a></span>
+      <span style="margin-left: 50px;">API: https://corona.lmao.ninja/v2</span>
     </v-footer>
   </v-app>
 </template>
