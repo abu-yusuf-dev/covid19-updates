@@ -1,6 +1,7 @@
 # Covid19-Updates
 
 > My fabulous Nuxt.js project
+- Live: https://covid19s-update.herokuapp.com/
 
 ## Build Setup
 
